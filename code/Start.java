@@ -2,7 +2,7 @@ class Start {
 
     public static void main(String[] args) {
         int[] a = { 6, 8, 3, 5, 4, 2, 1 };
-        java.util.Arrays.sort(a);
+        java.util.Arrays.sort(a);  // binary search tree
         Element root = Tool.build(a, 0, a.length - 1);
         System.out.println(Tool.find(root));
     }
@@ -10,6 +10,7 @@ class Start {
 
 class Tool {
     
+    // binary tree
     static Element build(int[]a, int left, int right) {
         if (left > right) return null;
         int mid = (left + right) / 2;
