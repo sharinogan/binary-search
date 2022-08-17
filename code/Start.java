@@ -4,7 +4,7 @@ class Start {
         int[] a = { 6, 8, 3, 5, 4, 2, 1 };
         java.util.Arrays.sort(a);
         Element root = Tool.build(a, 0, a.length - 1);
-        System.out.println(Tool.findMaxValue(root));
+        System.out.println(Tool.find(root));
     }
 }
 
@@ -20,6 +20,26 @@ class Tool {
         return e;
     }
     
+    // binary tree
+    static int find(Element e) {
+        int c = e.value;
+        if (e.left == null && e.right == null) return e.value;
+        if (e.left == null && e.right != null){
+            int b = find(e.right);
+            return b > c ? b : c;
+        }
+        if (e.left != null && e.right == null){
+            int a = find(e.left);
+            return a > c ? a : c;
+        }
+        int a = find(e.left);
+        int b = find(e.right);
+        if (a >= b && a >= c) return a;
+        if (b >= a && b >= c) return b;
+        return c;
+    }
+    
+    // binary search tree
     static int findMaxValue(Element e) {
         if (e.right == null) return e.value;
         return findMaxValue(e.right);
