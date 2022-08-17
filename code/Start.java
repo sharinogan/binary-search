@@ -8,23 +8,27 @@ class Start {
             root = Tool.insert(root, a[i]);
         }
         root = Tool.insert(root, 7);
-        //Tool.show(root, "");
-        //Tool.display(root, 0);
+        System.out.println(Tool.findMaxValue(root));
     }
 }
 
 class Tool {
     
-//    static void display(Element e, int status) {
-//        if (e == null) return;
-//        status = status * 10 + e.value;
-//        if (e.left == null && e.right == null) {
-//            System.out.println(status);
-//            return;
-//        }
-//        display(e.left, status);
-//        display(e.right, status);
-//    }
+    static int findMaxValue(Element e) {
+        if (e.right == null) return e.value;
+        return findMaxValue(e.right);
+    }
+    
+    static void display(Element e, int status) {
+        if (e == null) return;
+        status = status * 10 + e.value;
+        if (e.left == null && e.right == null) {
+            System.out.println(status);
+            return;
+        }
+        display(e.left, status);
+        display(e.right, status);
+    }
     
     static void show(Element e, String status) {
         if (e == null) return;
