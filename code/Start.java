@@ -1,18 +1,24 @@
-
 class Start {
 
     public static void main(String[] args) {
-        int[] a = { 6, 8, 3, 5, 4, 2, 1, 9 };
-        Element root = null;
-        for(int i = 0; i < a.length; i++) {
-            root = Tool.insert(root, a[i]);
-        }
-        root = Tool.insert(root, 7);
+        int[] a = { 6, 8, 3, 5, 4, 2, 1 };
+        java.util.Arrays.sort(a);
+        Element root = Tool.build(a, 0, a.length - 1);
         System.out.println(Tool.findMaxValue(root));
     }
 }
 
 class Tool {
+    
+    static Element build(int[]a, int left, int right) {
+        if (left > right) return null;
+        int mid = (left + right) / 2;
+        Element e = new Element();
+        e.value = a[mid];
+        e.left = build(a, left, mid -1);
+        e.right = build(a, mid + 1, right);
+        return e;
+    }
     
     static int findMaxValue(Element e) {
         if (e.right == null) return e.value;
