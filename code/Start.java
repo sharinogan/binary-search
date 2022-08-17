@@ -7,12 +7,23 @@ class Start {
         for(int i = 0; i < a.length; i++) {
             root = Tool.insert(root, a[i]);
         }
-        System.out.println(root.value);
-        System.out.println(root.right.value);
+        root = Tool.insert(root, 7);
+        Tool.show(root, "");
     }
 }
 
 class Tool {
+    
+    static void show(Element e, String status) {
+        if (e == null) return;
+        if (e.left == null & e.right == null) {
+            System.out.println(status + e.value);
+            return;
+        }
+        show(e.left, status + e.value);
+        show(e.right, status + e.value);
+    }
+    
     static Element insert(Element e, int key) {
         if (e == null) {
             e = new Element();
