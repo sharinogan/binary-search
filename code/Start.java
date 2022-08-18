@@ -1,14 +1,48 @@
 class Start {
 
     public static void main(String[] args) {
+        int[] b = { 3, 2, 1, 6 ,4, 2, 8 };
+                  //   ^              ^
+        int left = 0, right = b.length - 1;
+        while(left <= right) {
+            if (b[left] % 2 == 0 && b[right] % 2 == 0) {
+                int t = b[left];
+                b[left] = b[right];
+                b[right] = t;
+                left++;
+                right--;
+            }
+            if (b[left] % 2 != 0 && b[right] % 2 == 0) { left++; }
+            if (b[left] % 2 == 0 && b[right] % 2 != 0) { right++; }
+            if (b[left] % 2 != 0 && b[right] % 2 != 0) {
+                left++;
+                right--;
+            }
+        }
+        for (int i = 0; i < b.length; i++)  
+            System.out.print(" " + b[i]);
+       
         int[] a = { 6, 8, 3, 5, 4, 2, 1 };
         java.util.Arrays.sort(a);  // binary search tree
         Element root = Tool.build(a, 0, a.length - 1);
-        System.out.println(Tool.find(root));
+        //Tool.reveal(root);
     }
 }
 
+// Given an array of integers, write code to reverse
+// even values.         3 2 1 6 4 2 8
+//                        ^   ^ ^ ^ ^
+//                      3 8 1 2 4 6 2
+
 class Tool {
+    
+    // inorder binary tree
+    static void reveal(Element e) {
+        if (e == null) return;
+        reveal(e.left);
+        System.out.println(e.value);
+        reveal(e.right);
+    }
     
     // binary tree
     static Element build(int[]a, int left, int right) {
