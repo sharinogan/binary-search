@@ -1,22 +1,34 @@
 class Start {
 
     public static void main(String[] args) {
-        //Object o = new Object();
-        //System.out.println(o); // Address in memory
+        int[] a = { 1, 2, 6, 3, 8 };
         
-        Element first;
-        first = new Element();
-        first.name = "Hydrogen";
-        first.number = 1;
-        System.out.println(first.name);
-        System.out.println(first.number);
+        Element list = create(a);
+        print(list);
         
-        Element second = new Element();
-        second.name = "Helium";
-        second.number = 2;
-        System.out.println(second.name);
-        System.out.println(second.number);
-        
+    }
+    
+    static Element create(int ... data) {
+        Element head = null;
+        Element tail = null;
+        for (int i = 0; i < data.length; i++) {
+            if (tail == null) {
+                tail = new Element();
+                tail.number = data[i];
+                head = tail;
+            } else {
+                tail.next = new Element();
+                tail.next.number = data[i];
+                tail = tail.next;
+            }
+        }
+        return head;
+    }
+    
+    static void print(Element e) {
+        if (e == null) return;
+        System.out.println(e.number);
+        print(e.next);
     }
 }
 
