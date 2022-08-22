@@ -3,7 +3,8 @@ class Start {
     public static void main(String[] args) {
         int[] a = { 1, 2, 6, 3, 8 };
         
-        Element list = create(a);
+        //Element list = create(a);
+        Element list = createByBackward(a);
         print(list);
         
     }
@@ -21,6 +22,17 @@ class Start {
                 tail.next.number = data[i];
                 tail = tail.next;
             }
+        }
+        return head;
+    }
+    
+    static Element createByBackward(int ... data) {
+        Element head = null;
+        Element tail = null;
+        for (int i = data.length - 1; i >= 0; i--) {
+            head = new Element();
+            head.number = data[i];
+            head.next = tail;
         }
         return head;
     }
